@@ -26,6 +26,10 @@ mongoose.connect(process.env.MONGO_URI)
 const itemRoutes = require('./routes/items');
 app.use('/api/items', itemRoutes);
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Server is running' });
+});
+
 // --- 404 handler (catches requests that matched no route) ---
 app.use((req, res, next) => {
   res.status(404).json({ message: `Route not found: ${req.method} ${req.originalUrl}` });
